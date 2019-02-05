@@ -1,6 +1,6 @@
-import React, { forwardRef, Component } from 'react';
+import React, { forwardRef, PureComponent } from 'react';
 
-class Cell extends Component{
+class Cell extends PureComponent {
   constructor (props) {
     super(props);
     this.state={
@@ -63,24 +63,23 @@ class Cell extends Component{
   }
 
   draw () {
-    if(this.props.drawing) {
-      this.setState({
-        class: {
-          backgroundColor:this.props.color,
-          width: '20px',
-          height: '20px',
-          border: 'none',
-          borderLeft: '1px solid black',
-          borderTop: '1px solid black',
-          display: 'inline-block',
-          margin: '0px',
-          padding: '0px ',
-          outline: 'none',
-          cursor: 'pointer',
-        },
-        fill: true
-      })
-    }
+    this.setState({
+      class: {
+        backgroundColor:this.props.color,
+        width: '20px',
+        height: '20px',
+        border: 'none',
+        borderRadius: '50%',
+        borderLeft: '1px solid black',
+        borderTop: '1px solid black',
+        display: 'inline-block',
+        margin: '0px',
+        padding: '0px ',
+        outline: 'none',
+        cursor: 'pointer',
+      },
+      fill: true
+    })
   }
 
   render() {
@@ -88,11 +87,13 @@ class Cell extends Component{
       <div className="cell-div">
         <button 
           onMouseDown={() => {
-            this.props.draw();
+            console.log('down !!!')
             this.click();
-          }} 
-          onMouseUp={this.props.draw} 
-          onMouseOver={this.draw} 
+          }}
+          draggable
+          onDragEnter={this.draw}
+          //onMouseUp={this.props.draw} 
+          //onMouseOver={this.draw} 
           style={this.state.class}>
         </button>
       </div>

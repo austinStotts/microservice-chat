@@ -19,14 +19,16 @@ class App extends PureComponent {
     })
   }
 
-
-  // kjsi
   render () {
     return (
       <div className="main-div">
-        {this.state.size.map(() => {
-          return <Row color={this.state.color} draw={this.draw} drawing={this.state.drawing} key={Math.random()} size={this.state.size}/>
-        })}
+        {this.state.size.map(() => <Row 
+          color={this.state.color} 
+          draw={this.draw} 
+          drawing={this.state.drawing} 
+          key={Math.random()} 
+          size={this.state.size}
+          />)}
       </div>
     )
   }
